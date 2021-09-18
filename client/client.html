@@ -11,6 +11,7 @@
     const type = xhr.getResponseHeader('content-type');
 
     const content = document.querySelector("#content");
+    content.innerHTML = "";
     content.appendChild(document.createElement('hr'));
 
     const header = document.createElement('h1');
