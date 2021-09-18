@@ -49,7 +49,7 @@ const unauthorized = (request, response, acceptedTypes, params) => {
     message: 'You have successfully viewed the content.',
   };
 
-  if (!params.valid || params.loggedIn !== 'yes') {
+  if (!params.loggedIn || params.loggedIn !== 'yes') {
     responseObj.message = 'Missing loggedIn query parameter set to yes.';
     responseObj.id = 'unauthorized';
 

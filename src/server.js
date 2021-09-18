@@ -15,7 +15,7 @@ const urlStruct = {
   '/forbidden': otherResponseHandler.forbidden,
   '/internal': otherResponseHandler.internal,
   '/notImplemented': otherResponseHandler.notImplemented,
-  notFound: otherResponseHandler.notFound,
+  notFound: otherResponseHandler.notFound
 };
 
 const onRequest = (request, response) => {
