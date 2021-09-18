@@ -11,7 +11,6 @@
     const type = xhr.getResponseHeader('content-type');
 
     const content = document.querySelector("#content");
-    content.text = '';
     content.appendChild(document.createElement('hr'));
 
     const header = document.createElement('h1');
@@ -34,11 +33,11 @@
     content.appendChild(message);
   };
 
-  const sendAjax = (url, acceptedType) => {
+  const sendAjax = (url, acceptedTypes) => {
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', url);
-    xhr.setRequestHeader('Accept', acceptedType);
+    xhr.setRequestHeader('Accept', acceptedTypes);
 
     xhr.onload = () => handleResponse(xhr);
 
@@ -50,7 +49,7 @@
     const pageDropdown = document.querySelector("#page");
     const typeDropdown = document.querySelector("#type");
 
-    const sendSelectedValues = sendAjax(pageDropdown.value, typeDropdown.value);
+    const sendSelectedValues = () => sendAjax(pageDropdown.value, typeDropdown.value);
 
     sendButton.addEventListener('click', sendSelectedValues);
   };

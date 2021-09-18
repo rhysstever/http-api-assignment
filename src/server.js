@@ -1,5 +1,6 @@
 const http = require('http');
 const url = require('url');
+const query = require('querystring');
 const htmlResponseHandler = require('./htmlResponses.js');
 const otherResponseHandler = require('./otherResponses.js');
 
@@ -13,18 +14,18 @@ const urlStruct = {
   '/forbidden': otherResponseHandler.forbidden,
   '/internal': otherResponseHandler.internal,
   '/notImplemented': otherResponseHandler.notImplemented,
-  '/notFound': otherResponseHandler.notFound,
-  index: htmlResponseHandler.getIndex,
+  notFound: otherResponseHandler.notFound,
 };
 
 const onRequest = (request, response) => {
   const parsedURL = url.parse(request.url);
   const acceptedTypes = request.headers.accept.split(',');
+  const params = query.parse(parsedURL.query);
 
   if (urlStruct[parsedURL.pathname]) {
-    urlStruct[parsedURL.pathname](request, response, acceptedTypes);
+    urlStruct[parsedURL.pathname](request, response, acceptedTypes, params);
   } else {
-    urlStruct.index(request, response);
+    urlStruct.notFound(request, response, params);
   }
 };
 
